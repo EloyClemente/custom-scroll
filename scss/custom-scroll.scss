@@ -1,0 +1,95 @@
+
+$anchura-guia: 15px;
+
+.custom-scroll{
+	width: 100%; // Reducir aquí para separar la guía del borde
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+}
+
+
+
+.guia{
+	width: $anchura-guia;
+	height: 100%;
+	background-color: #fff;
+	border-radius: 50px;
+	box-shadow: inset 1px 0 4px #aaa;
+	transition-property: opacity; // Para cuando desaparece
+	transition-duration: .3s;
+	position: absolute;
+	top: 0;
+	left: calc(100% - 15px);
+	overflow: hidden;
+}
+
+
+
+.mando{
+	width: $anchura-guia;
+	height: 50px;
+	border-radius: 50px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: pointer;
+	z-index: 1; 
+	// Respetar el z-index de mando y mascara tal y como está.
+	// El mando ha de estar sobre la máscara para poder ser pulsado.
+	// De no ser así, da error al hacer mouseup fuera del mando.
+}
+
+
+
+.mascara{
+	width: $anchura-guia;
+	height: 50px;
+	background-color: #dadada;
+	border-radius: 50px;
+	box-shadow: 0 3px 3px -1px #aaa;
+	transition-property: background-color, top;
+	transition-duration: .3s, .3s;
+	position: absolute;
+	top: 0;
+	left: calc(100% - 15px);
+	z-index: 0;
+	// El color onhover se aplica desde JS debido al z-index.
+}
+
+
+
+// ELEMENTO A ESCROLEAR
+.texto{ // Parámetros mínimos necesarios
+	//.................................
+	margin-right: $anchura-guia;
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding-right: 20px;
+	transition: all, 2s;
+	transition-timing-function: cubic-bezier(.28,.66,.48,.82);
+	//.................................
+	text-align: justify;
+}
+
+
+
+
+
+
+.container-principal{ // container general de la web
+	@include flex;
+	width: 100%;
+	height: 100%;
+}
+
+
+
+.documento{ // Capa del html que contiene el custom-scroll y el elemento a escrolear
+	width: 80%;
+	height: 80%;
+}
+
+
+
